@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="font-roboto">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="output.css">
+        <title>Top Rated</title>
+    </head>
+    <body class="bg-black text-white md:flex md:items-start justify-center md:gap-[2rem] relative" data-pageScript="index.js">
+        
+        <header  class="md:hidden w-11/12 h-max md:w-max mx-auto flex items-center justify-between mt-4 relative headerContent">
+        </header>
+
+        <aside tabindex="0" id="desktopSidebar" class="hidden md:block min-w-[270px] md:ml-2 p-4 h-max mt-[2rem] sticky top-0 z-[1000] navBarContent">
+        </aside>
+
+        <main class="md:w-8/12 lg:w-[54rem]  mx-auto md:mx-0 px-4">
+            <section class="mt-[2rem] flex items-center  flex-col-reverse lg:flex-row lg:items-start  md:w-[89%] md:mx-auto md:p-1 sliderAndGenreContent">
+            </section>
+
+            <section class="" tabindex="0">
+
+                <div class="lg:w-[89%] h-[350px] relative overflow-hidden preview-container" aria-label="Featured Movies">
+                    
+                </div>
+
+        
+                <section class="mt-[3.75rem] w-full mx-auto ">
+
+        
+                    <h1 class="text-[1.9rem] font-[700] p-4 w01/12 mx-auto">Top Rated on Honey Movies</h1>
+                    <div class="flex items-center justify-around gap-[1rem] flex-wrap mx-auto  allMoviesContainer">
+                    </div>
+                </section>
+            </section>
+        
+        </main>
+
+        <footer tabindex="0" class="w-full  md:mx-auto  bg-[#ffb319] text-black font-bold md:absolute -bottom-[200px] md:flex md:items-center justify-evenly md:justify-around lg:justify-normal overflow-hidden footerContent">
+        </footer>
+        
+        <script src="./pageScripts/common.js" type="module"></script>
+        <script src="./pageScripts/top-rated.js" type="module"></script>
+    </body>
+</html>

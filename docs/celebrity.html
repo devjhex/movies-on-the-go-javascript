@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="font-roboto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Celebrities</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-black text-white md:flex md:items-start justify-center md:gap-[2rem] relative" data-pageScript="index.js">
+    <header  class="md:hidden w-11/12 h-max md:w-max mx-auto flex items-center justify-between mt-4 relative headerContent">
+    </header>
+
+    <aside tabindex="0" id="desktopSidebar" class="hidden md:block min-w-[270px] md:ml-2 p-4 h-max mt-[2rem] sticky top-0 z-[1000] navBarContent">
+    </aside>
+
+    <main class="md:w-8/12 lg:w-[54rem]  mx-auto md:mx-0 px-4">
+
+        <section tabindex="0">
+    
+            <section class="mt-[2rem] w-full mx-auto ">
+
+                <div class="celebrity-header">
+                    <div class="w-[200px] md:w-[250px] mx-auto md:mx-0 border border-[#ffb319] p-2 relative">
+                        <div class="bg-black w-full h-full top-0 left-0 lg:mx-auto border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
+                            <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
+                        </div>
+                        <img class="celebrity-image" src="">
+                    </div>
+                    <h1 class="text-[1.9rem] font-[700] py-2 text-center md:text-left md:mx-0 celebrity-name"></h1>
+                    <div>
+                        <ul class="flex items-center md:items-start justify-evenly md:justify-start md:gap-[.2rem]">
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Instagram</li>
+                            <li>Tik tok</li>
+                            <li>Youtube</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="celebrity-overview-container flex items-start md:justify-start gap-[.5rem] flex-wrap">
+
+                    <div class="celebrity-info-container">
+                        <h1 class="text-[1.9rem] font-[700] mx-auto md:mx-0 text-[#ffb319]">Personal Info</h1>
+                        <div class="flex flex-col items-start">
+                            <span>
+                                <strong class="text-[#ffb319]">Known For</strong>
+                            </span>
+                            <span class="known-for">
+                            </span>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span>
+                                <strong class="text-[#ffb319]">Gender</strong>
+                            </span>
+                            <span class="gender">
+
+                            </span>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span>
+                                <strong class="text-[#ffb319]">Birthday</strong>
+                            </span>
+                            <span class="birthday">
+                            </span>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span>
+                                <strong class="text-[#ffb319]">Place of Birth</strong>
+                            </span>
+                            <span class="place-of-birth">
+                            </span>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span>
+                                <strong class="text-[#ffb319]">Known Credits</strong>
+                            </span>
+                            <span class="known-credits">
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="biography">
+                        <h1 class="text-[1.9rem] font-[700] mx-auto md:mx-0 text-[#ffb319]">Biography
+                        </h1>
+                        <div class="celebrity-biography">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-slider p-2 mb-4">
+                    <h1 class="text-[1.9rem] font-[700] p-4 mx-auto">Known For</h1>
+                    <div class="movie-card-container movieSliderMenu overflow-scroll py-2 flex items-center gap-[.5rem]">
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+    <footer tabindex="0" class="w-full  md:mx-auto  bg-[#ffb319] text-black font-bold md:absolute -bottom-[200px] md:flex md:items-center justify-evenly md:justify-around lg:justify-normal overflow-hidden footerContent">
+    </footer>
+
+    <script src="pageScripts/common.js" type="module"></script>
+    <script src="pageScripts/celebrity.js" type="module"></script>
+</body>
+</html>

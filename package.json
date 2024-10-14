@@ -1,0 +1,30 @@
+{
+  "name": "movies-on-the-go",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "tailwind": "tailwindcss -i docs/input.css -o docs/output.css --watch",
+    "test": "vitest --reporter verbose",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@babel/core": "^7.25.8",
+    "@babel/preset-env": "^7.25.8",
+    "autoprefixer": "^10.4.20",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "jsdom": "^25.0.1",
+    "postcss": "^8.4.47",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.13",
+    "vitest": "^2.1.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

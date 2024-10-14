@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family:'bebas';
+        src: url(fonts/BebasNeue-Regular.ttf);
+    }
+    @font-face {
+        font-family:'lato';
+        src: url(fonts/Lato/Lato-Black.ttf);
+    }
+    @font-face {
+        font-family:'lucky';
+        src: url(fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf);
+    }
+    @font-face {
+        font-family:'roboto';
+        src: url(fonts/RobotoCondensed-VariableFont_wght.ttf);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.overflow-x-scroll::-webkit-scrollbar{
+    display: none;
+}
+
+html::-webkit-scrollbar{
+    width: 5px;
+    
+}
+    
+html::-webkit-scrollbar-thumb{
+    background-color: #f8B319;
+    transition-property: border;
+    transition-duration: .3s;
+}
+
+.phoneMenu::-webkit-scrollbar{
+    width: 5px;
+    height: 0px;
+    
+}
+.phoneMenu::-webkit-scrollbar-thumb{
+    background-color: #f8B319;
+    transition-property: border;
+    transition-duration: .3s;
+}
+
+.phoneGenreMenu::-webkit-scrollbar{
+    width: 5px;
+    padding-top: .2rem;
+    
+}
+.phoneGenreMenu::-webkit-scrollbar-thumb{
+    background-color: #f8B319;
+    transition-property: border;
+    transition-duration: .3s;
+}
+
+.movieSliderMenu::-webkit-scrollbar{
+    height: 5px;
+    width: 0;
+}
+
+.movieSliderMenu::-webkit-scrollbar-thumb{
+    background-color: #f8B319;
+    transition-property: border;
+    transition-duration: .3s;
+}
+
+.active > span {
+    color:#f8B319;
+}
+.activeTab {
+    color:#f8B319;
+}
+.navSelected {
+    color: #f8B319;
+    border: 1px solid #f8B319;
+}
+
+.fade-in {
+    opacity: 1;
+}
+.fade-out {
+    opacity: 0;
+}
+
+.preview-slide{
+    transition: opacity 1s ease-in-out;
+}
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="font-roboto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search | Honey Movies</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-black text-white md:flex md:items-start justify-center md:gap-[2rem] relative" >
+    <header  class="md:hidden w-11/12 h-max md:w-max mx-auto flex items-center justify-between mt-4 relative headerContent">
+    </header>
+
+    <aside tabindex="0" id="desktopSidebar" class="hidden md:block min-w-[270px] md:ml-2 p-4 h-max mt-[2rem] sticky top-0 z-[1000] navBarContent">
+    </aside>
+
+    <main class="md:w-8/12 lg:w-[54rem]  mx-auto md:mx-0 px-4">
+
+        <section class="" tabindex="0">
+    
+            <section class="my-[2rem] w-full mx-auto">
+
+    
+                <h1 class="text-[1.9rem] font-[700] p-4 mx-auto">Search Results For <span class="searchResultsText"></span></h1>
+                <div>
+                    <div class="w-full h-[3.5rem]  bg-black text-white text-center leading-[2.5rem]">
+                        <div class="flex gap-[2rem]">
+                        
+                            <div class="flex w-full p-1 border border-[#ffb319] group search-container" aria-labelledby="search-heading">
+                                <span id="search-heading" class="sr-only">Search Box Area</span>
+                                <button class="flex items-center justify-center search-button">
+                                    <img src="images/search-icon.svg" alt="search icon button" class="mx-4">
+                                </button>
+    
+                                <input type="text" placeholder="Search" id="search-bar" class="w-full bg-black outline-none search-bar" placeholder="Search" role="searchbox">
+    
+                                <button class="closeSearchModalBtn w-[30px] invisible group-hover:visible" aria-controls="search-bar">
+                                    <img src="images/closeIcon.png" alt="close button icon">
+                                </button>
+                            </div>
+                        
+    
+                        <button class="w-[40px]rounded-[.75rem] hidden">
+                            <img src="images/filter.svg" alt="filter results button icon">
+                        </button>
+                        </div>
+        
+                    </div>
+
+                </div>
+                <div>
+                    <div class="summaryResults border border-[#ffb319] overflow-hidden">
+                        <h1 class="p-2 bg-[#ffb319] text-black mb-2 font-bold text-[1.5rem]">Search Results</h1>
+                        <ul class="p-2 w-max flex items-center gap-[1rem] overflow-x-scroll relative lg:mt-2">
+                            <div class="border border-[#ffb319] absolute left-0 w-[20%] h-full transition-all duration-[.2s] borderSlider"></div>
+                            <li class="text-[#ffb319] w-max shrink-0 px-2 py-1 font-bold cursor-pointer active" aria-selected="true" data-type="movie">Movies <span class="px-1 border border-[#ffb319] rounded-[.2rem]">0</span></li>
+                            <li class="text-[#ffb319] w-max shrink-0 px-2 cursor-pointer" aria-selected="false" data-type="tv">TV Shows <span class="px-1 border border-[#ffb319] rounded-[.2rem]">0</span></li>
+                            <li class="text-[#ffb319] w-max shrink-0 px-2 cursor-pointer" aria-selected="false" data-type="person">People <span class="px-1 border border-[#ffb319] rounded-[.2rem]">0</span></li>
+                            <li class="text-[#ffb319] w-max shrink-0 px-2 cursor-pointer" aria-selected="false" data-type="collection">Collections <span class="px-1 border border-[#ffb319] rounded-[.2rem]">0</span></li>
+                            <li class="text-[#ffb319] w-max shrink-0 px-2 cursor-pointer" aria-selected="false" data-type="keywords">Keywords <span class="px-1 border border-[#ffb319] rounded-[.2rem]">0</span></li>
+                        </ul>
+                    </div>
+                    <div class="w-full search-results-container flex flex-col items-start  justify-evenly gap-[.5rem] mt-4">
+                   
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <div class="hidden">
+            <section tabindex="0" class="mt-8 flex flex-col p-1  md:hidden">
+
+                <!-- !Heading of the content to be showed. -->
+                
+                <h1 class="text-[1.9rem] font-[700] p-2 md:p-4 w-11/12 md:mx-auto border border-black border-l-[#F8B319] text-[#f8B319]">Popular on Honey Movies</h1>
+
+                <!-- !Settings for the display of the movies -->
+
+                <div class="mx-auto mb-4 w-max border border-l-black border-r-black border-t-black border-b-[#f8B319]">
+
+                </div>
+
+                
+            
+
+                <!-- !Movies to be displayed -->
+                <div class="w-11/12 flex items-center justify-around gap-[1rem] flex-wrap mx-auto">
+                    
+                </div>
+            
+            </section>
+        </div>
+
+    </main>
+
+    <footer tabindex="0" class="w-full  md:mx-auto  bg-[#ffb319] text-black font-bold md:absolute -bottom-[200px] md:flex md:items-center justify-evenly md:justify-around lg:justify-normal overflow-hidden footerContent">
+    </footer>
+
+    <script src="./pageScripts/common.js" type="module"></script>
+    <script src="./pageScripts/search.js" type="module"></script>
+</body>
+</html>

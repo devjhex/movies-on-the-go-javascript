@@ -1,0 +1,65 @@
+/* This is where all the features of the application */
+
+// "As a user":
+    //When i first open up the application, i want to see a list of movies. (Design) (Blue print done)
+    //I want to be able to switch between the views that is how i see the movies eg. drawer or list views.(Design)
+
+    //I want to click on a button or movie itself to get more information about the movie. (Movie)
+    // I want to be able to see the age rating on each movie.(Movie)
+    // I want to be able to see the top rated movies easily.(Movie)
+    // I want to be able to watch trailers of a certain movie.(Movie)
+
+
+    // I want to be able to search for other movies, tv shows or any of any genre available.(Search)
+    // I want to be able to search from different types of movies like tv Shows, series and anime for example.(Search)
+    // I want to be able to discover movies that I have never heard of apparently.(Search)
+    // I want to able to search for celebrities that are popular movie actors and actresses.(Search)
+    //I want to be able to search from different genres like action, love etc (Search)
+    
+
+    //I want to be able to get back to the home page. (Navigation)
+    //I want to be able to filter my searches to some degree. (Navigation)
+    //I want to be able to navigate to my watch-list page to see the movies I added there. (Navigation)
+    // I want to be able to navigate to a page which shows all the movies that have been completed when it comes to watching trailers. (Navigation)
+
+    // I want to be able to add movies easily to my watch-list so as to watch them later.(User)
+
+Categories of these features.
+
+    Design features (those features that deal with how the app is designed or how the user views the application).
+
+    Movies features (those features that the movie has when it comes to how much information it can give to the user in the application)
+
+    Search features (those features that are to do with searching about movies, celebrities, awards etc.)
+
+    Navigation features(those are features that constitute how the user navigates the application);
+
+    User features(those are features that are only and very useful when the user has initiated them like being able to add a comment or add a like to a movie.)
+
+
+    Design features are as follows:
+        - When i first open up the application, i want to see a list of movies.
+        - I want to be able to switch between the views that is how i see the movies eg. drawer or list views.
+
+    Movie features are as follows:
+        -I want to click on a button or movie itself to get more information about the movie. 
+        - I want to be able to see the age rating on each movie.
+        - I want to be able to see the top rated movies easily.
+        - I want to be able to watch trailers of a certain movie.     
+
+    Search features are as follows:
+
+        - I want to be able to search for other movies, tv shows or any of any genre available.
+        - I want to be able to search from different types of movies like tv Shows, series and anime for example.
+        - I want to be able to search from different genres like action, love etc
+        - I want to be able to discover movies that I have never heard of apparently.
+        - I want to able to search for celebrities that are popular movie actors and actresses.
+
+     Navigation features are as follows:
+        - I want to be able to get back to the home page.
+        - I want to be able to filter my searches to some degree.
+        - I want to be able to navigate to my watch-list page to see the movies I added there.
+        -  I want to be able to navigate to a page which shows all the movies that have been completed when it comes to watching trailers.
+
+    User features are as follows:
+        - I want to be able to add movies easily to my watch-list so as to watch them later.

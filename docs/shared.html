@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- ! Components that are to be shared among all the pages in the app. -->
+
+<!-- !HEADER CONTENT -->
+
+<div id="headerContent">
+    <!-- !logo for the mobile devices -->
+    <div class="w-max flex items-center">
+        <a href="index.html" class="p-2 flex items-center homeLink">
+            <div>
+                <img src="images/logo.png" alt="honey-movies">
+            </div>
+            <div class="flex flex-wrap flex-col text-[2.5rem] md:text-[3.5rem] text-[#F8B319] leading-[100%] font-[700]">
+                <span>Honey</span>
+                <span>Movies</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="md:hidden flex items-center justify-between gap-[2rem]">
+
+        <!-- !Search modal -->
+        <div>
+            <div>
+                <button class="w-[40px] openSearchModalBtn" aria-expanded="false" aria-controls="search-modal-container" aria-label="Open search bar">
+                    <img src="images/searchIcon.png" alt="search">
+                </button>
+            </div>
+
+        <div id="search-modal-container" aria-hidden="true" class="searchModal animate-fadeIn hidden">
+            <div class="absolute w-full h-full p-2 bg-black border border-[#f8B319] flex items-center justify-center  top-0 left-0 searchModal search-container">
+                <!-- !search input -->
+                <div class="w-full rounded-[.75rem] text-white text-center lg:ml-[6rem] " aria-labelledby="search-heading">
+                    <h2 id="search-heading" class="sr-only">Search Box Area</h2>
+                    <p id="search-instructions" class="sr-only">Press Enter to go into the input.</p>
+                    <div class="flex gap-[2rem]">
+                    
+                        <div class="flex w-full">
+
+                            <input tabindex="-1" type="text" id="search-bar"  placeholder="Search" class="w-full bg-black outline-none search-bar focusable" role="searchbox">
+
+                            <button tabindex="-1" class="search-button focusable">
+                                <img src="images/search-icon.svg" alt="search button icon" class="mx-4">
+                            </button>
+                        </div>
+                    </div>
+    
+                </div>
+
+                <!-- !Close search modal -->
+                <div class="closeSearchModal flex items-center justify-center">
+                    <button tabindex="-1" class="closeSearchModalBtn w-[30px] focusable" aria-expanded="true" aria-controls="search-modal-container" aria-label="Close search bar">
+                        <img src="images/closeIcon.png" alt="close">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- ! The dropdown for the mobile devices. -->
+        <nav aria-label="Main navigation" id="phoneSidebar">
+            <button aria-label="Open Sidebar" aria-expanded="false" aria-controls="sidebar" class="openMenuBtn">
+                <img src="images/burger.svg" alt="More">
+            </button>
+
+            <div id="sidebar" role="navigation" class="fixed min-h-full top-4 right-0 z-10 w-full h-screen bg-black animate-fadeIn dropdownMenu hidden">
+                <div class="p-4 bg-black border border-[#f8B319] ml-auto w-[95%] border-r-black border-b-black rounded-b-none flex items-start justify-between flex-row-reverse gap-[1rem]">
+
+                    <!-- !Close Menu button -->
+                    <div class="closeContainer">
+                        <button tabindex="2" aria-label="Close Sidebar" aria-controls="sidebar" aria-expanded="false" class="closeMenu w-[30px]">
+                            <img src="images/closeIcon.png" alt="close">
+                        </button>
+                    </div>
+
+                    <div tabindex="1" class="w-10/12  max-h-[600px] px-1 py-2 flex flex-col gap-[.5rem] overflow-y-scroll phoneMenu">
+                        <section tabindex="-1" role="group" aria-labelledby="menu-heading" class="p-2">
+                            <h1 id="menu-heading" class="text-[.9rem] text-slate-400">Menu</h1>
+                            <ul>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="home" href="index.html" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        <img src="images/home.png" alt="home" class="mr-4 w-[1.5rem] h-[1.5rem] hidden">
+                                        <span class="text-[1rem]">Home</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="top-rated" href="top-rated.html" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.0312 1C13.0666 1 14.6926 5.69969 15.2795 7.50668C15.4141 7.92126 15.7943 8.20684 16.23 8.22162C18.1151 8.28556 23 8.55772 23 9.66144C23 10.7495 19.5188 13.4853 18.0955 14.5583C17.7427 14.8243 17.5982 15.2836 17.734 15.704C18.3132 17.4975 19.7048 22.1483 18.8117 22.8815C17.9323 23.6034 14.1749 20.7486 12.6485 19.5286C12.2692 19.2254 11.7305 19.2251 11.3511 19.528C9.82346 20.7477 6.06764 23.6035 5.25065 22.8815C4.41962 22.1471 5.73815 17.4816 6.28237 15.6949C6.40915 15.2786 6.26319 14.8287 5.91569 14.5668C4.4996 13.4997 1 10.7523 1 9.66144C1 8.55659 5.89498 8.285 7.77586 8.22142C8.20861 8.2068 8.58723 7.92462 8.72415 7.51385C9.32468 5.71216 10.9944 1 12.0312 1Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">Top Rated</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="discover" href="discover.html" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 12C1 14.4477 1.13246 16.3463 1.46153 17.827C1.78807 19.2963 2.29478 20.2921 3.00136 20.9986C3.70794 21.7052 4.70365 22.2119 6.17298 22.5385C7.65366 22.8675 9.55232 23 12 23C14.4477 23 16.3463 22.8675 17.827 22.5385C19.2963 22.2119 20.2921 21.7052 20.9986 20.9986C21.7052 20.2921 22.2119 19.2963 22.5385 17.827C22.8675 16.3463 23 14.4477 23 12C23 9.55232 22.8675 7.65366 22.5385 6.17298C22.2119 4.70365 21.7052 3.70794 20.9986 3.00136C20.2921 2.29478 19.2963 1.78807 17.827 1.46153C16.3463 1.13246 14.4477 1 12 1C9.55232 1 7.65366 1.13246 6.17298 1.46153C4.70365 1.78807 3.70794 2.29478 3.00136 3.00136C2.29478 3.70794 1.78807 4.70365 1.46153 6.17298C1.13246 7.65366 1 9.55232 1 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M17.1594 8.7664C17.6017 7.56567 16.434 6.39804 15.2333 6.84036L9.74928 8.86057C9.33704 9.01242 9.0121 9.33736 8.86025 9.7496L6.84004 15.2336C6.39772 16.4344 7.56535 17.602 8.76608 17.1597L14.2501 15.1395C14.6624 14.9876 14.9873 14.6627 15.1392 14.2504L17.1594 8.7664Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">Discover</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="celebrities" href="celebrities.html" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16 10L11 15L9 13" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M10.1909 1.89863C11.0994 0.700456 12.9006 0.700456 13.8091 1.89863L14.9438 3.39506C15.1917 3.72195 15.5966 3.88968 16.003 3.8338L17.8635 3.578C19.3531 3.37318 20.6268 4.64685 20.422 6.13651L20.1662 7.99698C20.1103 8.40339 20.2781 8.80832 20.6049 9.05618L22.1014 10.1909C23.2995 11.0994 23.2995 12.9006 22.1014 13.8091L20.6049 14.9438C20.2781 15.1917 20.1103 15.5966 20.1662 16.003L20.422 17.8635C20.6268 19.3531 19.3531 20.6268 17.8635 20.422L16.003 20.1662C15.5966 20.1103 15.1917 20.2781 14.9438 20.6049L13.8091 22.1014C12.9006 23.2995 11.0994 23.2995 10.1909 22.1014L9.05618 20.6049C8.80832 20.2781 8.40339 20.1103 7.99698 20.1662L6.13651 20.422C4.64685 20.6268 3.37318 19.3531 3.578 17.8635L3.8338 16.003C3.88968 15.5966 3.72195 15.1917 3.39506 14.9438L1.89863 13.8091C0.700456 12.9006 0.700456 11.0994 1.89863 10.1909L3.39506 9.05618C3.72195 8.80832 3.88968 8.40339 3.8338 7.99698L3.578 6.13651C3.37318 4.64685 4.64685 3.37318 6.13651 3.578L7.99698 3.8338C8.40339 3.88968 8.80832 3.72195 9.05618 3.39506L10.1909 1.89863Z" stroke="#F9F9F9" stroke-width="2"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">celebreties</span>
+                                    </a> 
+                                </li> 
+                            </ul>
+                        </section>
+                        <section tabindex="-1" role="group" aria-labelledby="library-heading" class="p-2">
+                            <h1 id="library-heading" class="text-[.9rem] text-slate-400">Library</h1>
+                            <ul>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="watchlist" href="watchlist.html" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                       
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 12C1 14.4477 1.13246 16.3463 1.46153 17.827C1.78807 19.2963 2.29478 20.2921 3.00136 20.9986C3.70794 21.7052 4.70365 22.2119 6.17298 22.5385C7.65366 22.8675 9.55232 23 12 23C14.4477 23 16.3463 22.8675 17.827 22.5385C19.2963 22.2119 20.2921 21.7052 20.9986 20.9986C21.7052 20.2921 22.2119 19.2963 22.5385 17.827C22.8675 16.3463 23 14.4477 23 12C23 9.55232 22.8675 7.65366 22.5385 6.17298C22.2119 4.70365 21.7052 3.70794 20.9986 3.00136C20.2921 2.29478 19.2963 1.78807 17.827 1.46153C16.3463 1.13246 14.4477 1 12 1C9.55232 1 7.65366 1.13246 6.17298 1.46153C4.70365 1.78807 3.70794 2.29478 3.00136 3.00136C2.29478 3.70794 1.78807 4.70365 1.46153 6.17298C1.13246 7.65366 1 9.55232 1 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 8V12M12 16V12M12 12H16H8" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">Watchlist</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="recent" href="#" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 12C1 14.4477 1.13246 16.3463 1.46153 17.827C1.78807 19.2963 2.29478 20.2921 3.00136 20.9986C3.70794 21.7052 4.70365 22.2119 6.17298 22.5385C7.65366 22.8675 9.55232 23 12 23C14.4477 23 16.3463 22.8675 17.827 22.5385C19.2963 22.2119 20.2921 21.7052 20.9986 20.9986C21.7052 20.2921 22.2119 19.2963 22.5385 17.827C22.8675 16.3463 23 14.4477 23 12C23 9.55232 22.8675 7.65366 22.5385 6.17298C22.2119 4.70365 21.7052 3.70794 20.9986 3.00136C20.2921 2.29478 19.2963 1.78807 17.827 1.46153C16.3463 1.13246 14.4477 1 12 1C9.55232 1 7.65366 1.13246 6.17298 1.46153C4.70365 1.78807 3.70794 2.29478 3.00136 3.00136C2.29478 3.70794 1.78807 4.70365 1.46153 6.17298C1.13246 7.65366 1 9.55232 1 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 6C12 6 12 10 12 11C12 12 12 12 13 12C14 12 18 12 18 12" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                            
+                                        <span class=" text-[1rem]">Recent</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="downloaded" href="#" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        
+                                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17 10L12 15M12 15L7 10M12 15L12 1" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5.296C5 4.62866 4.36871 4.13099 3.74865 4.37771C0.806956 5.54824 0 7.98146 0 12.7057C0 20.3595 2.118 21.9999 12 21.9999C21.882 21.9999 24 20.3595 24 12.7057C24 7.98146 23.193 5.54824 20.2513 4.37771C19.6313 4.13099 19 4.62866 19 5.296C19 5.74846 19.3009 6.13662 19.714 6.32119C20.0273 6.46119 20.2776 6.61212 20.4811 6.7697C21.4189 7.49607 22 8.88206 22 12.7057C22 16.5294 21.4189 17.9154 20.4811 18.6418C19.9576 19.0472 19.1238 19.4087 17.7047 19.653C16.2861 19.8972 14.436 19.9999 12 19.9999C9.56404 19.9999 7.71385 19.8972 6.2953 19.653C4.87622 19.4087 4.04241 19.0472 3.51891 18.6418C2.58107 17.9154 2 16.5294 2 12.7057C2 8.88206 2.58107 7.49607 3.51891 6.7697C3.72237 6.61212 3.97269 6.46119 4.28602 6.32119C4.69912 6.13662 5 5.74846 5 5.296Z" fill="#F9F9F9"/>
+                                        </svg>
+                                        <span class="text-[1rem]">Downloaded</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="playlists" href="#" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        
+                                        <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.6 1C9.29038 1 10.8323 1.84142 12 2.8C13.1677 1.84142 14.7096 1 16.4 1C20.0451 1 23 3.71049 23 7.05386C23 13.795 15.3274 17.721 12.7981 18.8321C12.2886 19.056 11.7114 19.056 11.2019 18.8321C8.67259 17.721 1 13.7948 1 7.0537C1 3.71033 3.95492 1 7.6 1Z" stroke="#F9F9F9" stroke-width="2"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">Playlists</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="completed" href="#" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 9.70711C17.0976 9.31658 17.0976 8.68342 16.7071 8.29289C16.3166 7.90237 15.6834 7.90237 15.2929 8.29289L11 12.5858L9.20711 10.7929C8.81658 10.4024 8.18342 10.4024 7.79289 10.7929C7.40237 11.1834 7.40237 11.8166 7.79289 12.2071L10.2929 14.7071C10.6834 15.0976 11.3166 15.0976 11.7071 14.7071L16.7071 9.70711Z" fill="#FFB319"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">Completed</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                        <section tabindex="-1" role="group" aria-labelledby="general-heading" class="p-2">
+                            <h1 id="general-heading" class="text-[.9rem] text-slate-400">General</h1>
+                            <ul>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="settings" href="#" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.415 3.83878C14.7095 0.0537398 9.2905 0.0537401 8.58499 3.83878C8.41886 4.73006 7.49808 5.26091 6.64603 4.96004C3.01257 3.67704 0.312178 8.37772 3.23044 10.8784C3.91803 11.4676 3.91803 12.5324 3.23044 13.1216C0.312178 15.6223 3.01257 20.323 6.64603 19.04C7.49808 18.7391 8.41886 19.2699 8.58499 20.1612C9.2905 23.9463 14.7095 23.9463 15.415 20.1612C15.5811 19.2699 16.5019 18.7391 17.354 19.04C20.9874 20.323 23.6878 15.6223 20.7696 13.1216C20.082 12.5324 20.082 11.4676 20.7696 10.8784C23.6878 8.37772 20.9874 3.67704 17.354 4.96004C16.5019 5.26091 15.5811 4.73006 15.415 3.83878Z" stroke="#F9F9F9" stroke-width="2" stroke-linejoin="round"/>
+                                            <circle cx="4" cy="4" r="3" transform="matrix(-1 0 0 1 16 8)" stroke="#F9F9F9" stroke-width="2"/>
+                                        </svg>
+                                            
+                                        <span class="text-[1rem]">Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" aria-selected="false" data-page="log-out" href="#" class="flex items-center w-10/12 p-2 gap-[1rem]  transition-colors text-white border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                                        
+                                        <svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 13.0909C1 15.6437 1.0665 17.4629 1.28113 18.8163C1.49358 20.1558 1.83711 20.9396 2.31996 21.4951C2.81162 22.0608 3.54214 22.5002 4.75903 22.9651C5.66398 23.3108 6.75137 23.6409 8.10867 24.0529C8.59827 24.2015 9.12299 24.3608 9.68693 24.5353C11.7072 25.1605 13.1538 25.2957 14.1923 25.0968C15.1715 24.9092 15.8493 24.4144 16.3628 23.5693C16.9059 22.6756 17.2748 21.3685 17.4967 19.5765C17.7171 17.7975 17.7826 15.6354 17.7826 13.0909C17.7826 10.5464 17.7171 8.38435 17.4967 6.60527C17.2748 4.81331 16.9059 3.5062 16.3628 2.61248C15.8493 1.76742 15.1715 1.27265 14.1923 1.08506C13.1538 0.886122 11.7072 1.02136 9.68692 1.64652C9.12307 1.821 8.59843 1.98025 8.1089 2.12884C6.75149 2.54087 5.66403 2.87096 4.75903 3.21667C3.54214 3.68154 2.81162 4.12096 2.31996 4.68661C1.83711 5.24212 1.49358 6.02593 1.28114 7.36552C1.0665 8.71893 1 10.5381 1 13.0909Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <ellipse cx="1.04348" cy="1.04727" rx="1.04348" ry="1.04727" transform="matrix(-1 0 0 1 14.6087 12.2205)" fill="#F9F9F9"/>
+                                            <path d="M17.7391 22.5164C22.9565 22.5164 22.9565 21.243 22.9565 13.2604C22.9565 5.27783 22.9565 3.66547 17.7391 3.66547" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            
+                                        <span class="text-[1rem]">Log Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </section>
+                    </div>
+                
+            
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!-- ! END OF HEADER CONTENT -->
+
+<!-- !NAVIGATION BAR CONTENT -->
+
+<div id="navBarContent">
+     <!-- !The logo of the aside section -->     
+     <a tabindex="-1" href="index.html" class="p-2 flex items-center logoLink homeLink">
+        <div>
+            <img src="images/logo.png" alt="honey-movies">
+        </div>
+        <div class="flex flex-col text-[2.5rem] font-[700] text-[#F8B319] leading-[100%]">
+            <span>Honey</span>
+            <span>Movies</span>
+        </div>
+    </a>
+    <!-- !End of logo -->
+
+    <section tabindex="-1" class="p-2 mt-[2.7rem] menuSection">
+        <h1 class="text-[1.5rem]  text-slate-400">Menu</h1>
+        <div class="mt-1 mb-3 desktopMenuItems section">
+            <a tabindex="-1" aria-selected="false" data-page="home" href="index.html" class="flex items-center w-full gap-[1rem]  transition-colors text-white border  border-black p-2 hover:border-[#ffb319] hover:text-[#ffb319]">
+                <img src="images/home.png" alt="home">
+                <span class="text-[1.2rem]">Home</span>
+            </a>
+            <a tabindex="-1" aria-selected="false" data-page="top-rated" href="top-rated.html" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.0312 1C13.0666 1 14.6926 5.69969 15.2795 7.50668C15.4141 7.92126 15.7943 8.20684 16.23 8.22162C18.1151 8.28556 23 8.55772 23 9.66144C23 10.7495 19.5188 13.4853 18.0955 14.5583C17.7427 14.8243 17.5982 15.2836 17.734 15.704C18.3132 17.4975 19.7048 22.1483 18.8117 22.8815C17.9323 23.6034 14.1749 20.7486 12.6485 19.5286C12.2692 19.2254 11.7305 19.2251 11.3511 19.528C9.82346 20.7477 6.06764 23.6035 5.25065 22.8815C4.41962 22.1471 5.73815 17.4816 6.28237 15.6949C6.40915 15.2786 6.26319 14.8287 5.91569 14.5668C4.4996 13.4997 1 10.7523 1 9.66144C1 8.55659 5.89498 8.285 7.77586 8.22142C8.20861 8.2068 8.58723 7.92462 8.72415 7.51385C9.32468 5.71216 10.9944 1 12.0312 1Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Top Rated</span>
+            </a>
+            <a tabindex="-1" aria-selected="false"  data-page="discover" href="discover.html" class="flex items-center w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 12C1 14.4477 1.13246 16.3463 1.46153 17.827C1.78807 19.2963 2.29478 20.2921 3.00136 20.9986C3.70794 21.7052 4.70365 22.2119 6.17298 22.5385C7.65366 22.8675 9.55232 23 12 23C14.4477 23 16.3463 22.8675 17.827 22.5385C19.2963 22.2119 20.2921 21.7052 20.9986 20.9986C21.7052 20.2921 22.2119 19.2963 22.5385 17.827C22.8675 16.3463 23 14.4477 23 12C23 9.55232 22.8675 7.65366 22.5385 6.17298C22.2119 4.70365 21.7052 3.70794 20.9986 3.00136C20.2921 2.29478 19.2963 1.78807 17.827 1.46153C16.3463 1.13246 14.4477 1 12 1C9.55232 1 7.65366 1.13246 6.17298 1.46153C4.70365 1.78807 3.70794 2.29478 3.00136 3.00136C2.29478 3.70794 1.78807 4.70365 1.46153 6.17298C1.13246 7.65366 1 9.55232 1 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.1594 8.7664C17.6017 7.56567 16.434 6.39804 15.2333 6.84036L9.74928 8.86057C9.33704 9.01242 9.0121 9.33736 8.86025 9.7496L6.84004 15.2336C6.39772 16.4344 7.56535 17.602 8.76608 17.1597L14.2501 15.1395C14.6624 14.9876 14.9873 14.6627 15.1392 14.2504L17.1594 8.7664Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Discover</span>
+            </a>
+            <a tabindex="-1" aria-selected="false" data-page="celebrities" href="celebrities.html" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 10L11 15L9 13" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.1909 1.89863C11.0994 0.700456 12.9006 0.700456 13.8091 1.89863L14.9438 3.39506C15.1917 3.72195 15.5966 3.88968 16.003 3.8338L17.8635 3.578C19.3531 3.37318 20.6268 4.64685 20.422 6.13651L20.1662 7.99698C20.1103 8.40339 20.2781 8.80832 20.6049 9.05618L22.1014 10.1909C23.2995 11.0994 23.2995 12.9006 22.1014 13.8091L20.6049 14.9438C20.2781 15.1917 20.1103 15.5966 20.1662 16.003L20.422 17.8635C20.6268 19.3531 19.3531 20.6268 17.8635 20.422L16.003 20.1662C15.5966 20.1103 15.1917 20.2781 14.9438 20.6049L13.8091 22.1014C12.9006 23.2995 11.0994 23.2995 10.1909 22.1014L9.05618 20.6049C8.80832 20.2781 8.40339 20.1103 7.99698 20.1662L6.13651 20.422C4.64685 20.6268 3.37318 19.3531 3.578 17.8635L3.8338 16.003C3.88968 15.5966 3.72195 15.1917 3.39506 14.9438L1.89863 13.8091C0.700456 12.9006 0.700456 11.0994 1.89863 10.1909L3.39506 9.05618C3.72195 8.80832 3.88968 8.40339 3.8338 7.99698L3.578 6.13651C3.37318 4.64685 4.64685 3.37318 6.13651 3.578L7.99698 3.8338C8.40339 3.88968 8.80832 3.72195 9.05618 3.39506L10.1909 1.89863Z" stroke="#F9F9F9" stroke-width="2"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Celebreties</span>
+            </a>
+
+            
+        </div>
+    </section>
+
+    <section tabindex="-1" class="p-2 librarySection section">
+        <h1 class="text-[1.2rem] text-slate-400">Library</h1>
+        <div class="mt-1 mb-3">
+            <a tabindex="-1" aria-selected="false" data-page="watchlist" href="watchlist.html" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 12C1 14.4477 1.13246 16.3463 1.46153 17.827C1.78807 19.2963 2.29478 20.2921 3.00136 20.9986C3.70794 21.7052 4.70365 22.2119 6.17298 22.5385C7.65366 22.8675 9.55232 23 12 23C14.4477 23 16.3463 22.8675 17.827 22.5385C19.2963 22.2119 20.2921 21.7052 20.9986 20.9986C21.7052 20.2921 22.2119 19.2963 22.5385 17.827C22.8675 16.3463 23 14.4477 23 12C23 9.55232 22.8675 7.65366 22.5385 6.17298C22.2119 4.70365 21.7052 3.70794 20.9986 3.00136C20.2921 2.29478 19.2963 1.78807 17.827 1.46153C16.3463 1.13246 14.4477 1 12 1C9.55232 1 7.65366 1.13246 6.17298 1.46153C4.70365 1.78807 3.70794 2.29478 3.00136 3.00136C2.29478 3.70794 1.78807 4.70365 1.46153 6.17298C1.13246 7.65366 1 9.55232 1 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 8V12M12 16V12M12 12H16H8" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Watchlist</span>
+            <a tabindex="-1" aria-selected="false" data-page="recent" href="#" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 12C1 14.4477 1.13246 16.3463 1.46153 17.827C1.78807 19.2963 2.29478 20.2921 3.00136 20.9986C3.70794 21.7052 4.70365 22.2119 6.17298 22.5385C7.65366 22.8675 9.55232 23 12 23C14.4477 23 16.3463 22.8675 17.827 22.5385C19.2963 22.2119 20.2921 21.7052 20.9986 20.9986C21.7052 20.2921 22.2119 19.2963 22.5385 17.827C22.8675 16.3463 23 14.4477 23 12C23 9.55232 22.8675 7.65366 22.5385 6.17298C22.2119 4.70365 21.7052 3.70794 20.9986 3.00136C20.2921 2.29478 19.2963 1.78807 17.827 1.46153C16.3463 1.13246 14.4477 1 12 1C9.55232 1 7.65366 1.13246 6.17298 1.46153C4.70365 1.78807 3.70794 2.29478 3.00136 3.00136C2.29478 3.70794 1.78807 4.70365 1.46153 6.17298C1.13246 7.65366 1 9.55232 1 12Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 6C12 6 12 10 12 11C12 12 12 12 13 12C14 12 18 12 18 12" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                    
+                <span class=" text-[1.2rem]">Recent</span>
+            </a>
+           
+            <a tabindex="-1" aria-selected="false" data-page="downloaded" href="#" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 10L12 15M12 15L7 10M12 15L12 1" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5.296C5 4.62866 4.36871 4.13099 3.74865 4.37771C0.806956 5.54824 0 7.98146 0 12.7057C0 20.3595 2.118 21.9999 12 21.9999C21.882 21.9999 24 20.3595 24 12.7057C24 7.98146 23.193 5.54824 20.2513 4.37771C19.6313 4.13099 19 4.62866 19 5.296C19 5.74846 19.3009 6.13662 19.714 6.32119C20.0273 6.46119 20.2776 6.61212 20.4811 6.7697C21.4189 7.49607 22 8.88206 22 12.7057C22 16.5294 21.4189 17.9154 20.4811 18.6418C19.9576 19.0472 19.1238 19.4087 17.7047 19.653C16.2861 19.8972 14.436 19.9999 12 19.9999C9.56404 19.9999 7.71385 19.8972 6.2953 19.653C4.87622 19.4087 4.04241 19.0472 3.51891 18.6418C2.58107 17.9154 2 16.5294 2 12.7057C2 8.88206 2.58107 7.49607 3.51891 6.7697C3.72237 6.61212 3.97269 6.46119 4.28602 6.32119C4.69912 6.13662 5 5.74846 5 5.296Z" fill="#F9F9F9"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Downloaded</span>
+            </a>
+            <a tabindex="-1" aria-selected="false" data-page="playlists" href="#" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.6 1C9.29038 1 10.8323 1.84142 12 2.8C13.1677 1.84142 14.7096 1 16.4 1C20.0451 1 23 3.71049 23 7.05386C23 13.795 15.3274 17.721 12.7981 18.8321C12.2886 19.056 11.7114 19.056 11.2019 18.8321C8.67259 17.721 1 13.7948 1 7.0537C1 3.71033 3.95492 1 7.6 1Z" stroke="#F9F9F9" stroke-width="2"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Playlists</span>
+            </a>
+            
+            </a>
+            <a tabindex="-1" aria-selected="false" data-page="completed" href="#" class="flex w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 9.70711C17.0976 9.31658 17.0976 8.68342 16.7071 8.29289C16.3166 7.90237 15.6834 7.90237 15.2929 8.29289L11 12.5858L9.20711 10.7929C8.81658 10.4024 8.18342 10.4024 7.79289 10.7929C7.40237 11.1834 7.40237 11.8166 7.79289 12.2071L10.2929 14.7071C10.6834 15.0976 11.3166 15.0976 11.7071 14.7071L16.7071 9.70711Z" fill="#FFB319"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Completed</span>
+            </a>
+            
+        </div>
+    </section>
+
+    <section tabindex="-1" class="p-2 GeneralSection section">
+        <h1 class="text-[1.2rem] text-slate-400">General</h1>
+        
+        <div class="mt-1 mb-3">
+            <a tabindex="-1" aria-selected="false" data-page="settings" href="#" class="flex items-center w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#ffb319]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.415 3.83878C14.7095 0.0537398 9.2905 0.0537401 8.58499 3.83878C8.41886 4.73006 7.49808 5.26091 6.64603 4.96004C3.01257 3.67704 0.312178 8.37772 3.23044 10.8784C3.91803 11.4676 3.91803 12.5324 3.23044 13.1216C0.312178 15.6223 3.01257 20.323 6.64603 19.04C7.49808 18.7391 8.41886 19.2699 8.58499 20.1612C9.2905 23.9463 14.7095 23.9463 15.415 20.1612C15.5811 19.2699 16.5019 18.7391 17.354 19.04C20.9874 20.323 23.6878 15.6223 20.7696 13.1216C20.082 12.5324 20.082 11.4676 20.7696 10.8784C23.6878 8.37772 20.9874 3.67704 17.354 4.96004C16.5019 5.26091 15.5811 4.73006 15.415 3.83878Z" stroke="#F9F9F9" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="4" cy="4" r="3" transform="matrix(-1 0 0 1 16 8)" stroke="#F9F9F9" stroke-width="2"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Settings</span>
+            </a>
+            <a tabindex="-1" aria-selected="false" data-page="log-out" href="#" class="flex items-center w-full gap-[1rem] p-2 transition-colors border  border-black hover:border-[#ffb319] hover:text-[#5a513f]">
+                <svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 13.0909C1 15.6437 1.0665 17.4629 1.28113 18.8163C1.49358 20.1558 1.83711 20.9396 2.31996 21.4951C2.81162 22.0608 3.54214 22.5002 4.75903 22.9651C5.66398 23.3108 6.75137 23.6409 8.10867 24.0529C8.59827 24.2015 9.12299 24.3608 9.68693 24.5353C11.7072 25.1605 13.1538 25.2957 14.1923 25.0968C15.1715 24.9092 15.8493 24.4144 16.3628 23.5693C16.9059 22.6756 17.2748 21.3685 17.4967 19.5765C17.7171 17.7975 17.7826 15.6354 17.7826 13.0909C17.7826 10.5464 17.7171 8.38435 17.4967 6.60527C17.2748 4.81331 16.9059 3.5062 16.3628 2.61248C15.8493 1.76742 15.1715 1.27265 14.1923 1.08506C13.1538 0.886122 11.7072 1.02136 9.68692 1.64652C9.12307 1.821 8.59843 1.98025 8.1089 2.12884C6.75149 2.54087 5.66403 2.87096 4.75903 3.21667C3.54214 3.68154 2.81162 4.12096 2.31996 4.68661C1.83711 5.24212 1.49358 6.02593 1.28114 7.36552C1.0665 8.71893 1 10.5381 1 13.0909Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <ellipse cx="1.04348" cy="1.04727" rx="1.04348" ry="1.04727" transform="matrix(-1 0 0 1 14.6087 12.2205)" fill="#F9F9F9"/>
+                    <path d="M17.7391 22.5164C22.9565 22.5164 22.9565 21.243 22.9565 13.2604C22.9565 5.27783 22.9565 3.66547 17.7391 3.66547" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                    
+                <span class="text-[1.2rem]">Log Out</span>
+            </a>
+        </div>
+    </section>
+</div>
+
+<!-- ! END OF NAVIGATION BAR CONTENT -->
+
+<!-- !TAB SLIDER AND GENRE CUSTOM SELECT MENU CONTENT -->
+<div id="sliderAndGenreContent">
+    <div class="w-full md:flex md:flex-col mx-auto">
+        <!-- ! tab navigation -->
+        <div role="region" aria-labelledby="filmTypes" class="tabsContainer md:mt-2 md:px-2" tabindex="0">
+            <h1 id="filmTypes" class="sr-only">Types</h1>
+            <div role="tablist" class="w-full sm:w-[24rem] mx-auto flex items-center justify-around  md:my-2  h-[2.5rem] md:h-[3rem] relative tabList" tabindex="-1">
+                <button role="tab" aria-selected="true" tabindex="-1" class="w-1/3 h-full flex items-center justify-center text-[1.5rem] font-[600] leading-[100%] hover:text-[#ffb319] transition-colors duration-[.5s] cursor-pointer focus:text-[#ffb319] activeTab" data-type="movies">Movies</button>
+                <button role="tab" aria-selected="false" tabindex="-1" class="w-1/3 h-full flex items-center justify-center   text-[1.5rem] font-[600] leading-[100%] cursor-pointer hover:text-[#ffb319] transition-colors duration-[.5s] focus:text-[#ffb319]" data-type="tv">TV Shows</button>
+                <button role="tab" aria-selected="false" tabindex="-1" class="w-1/3 h-full  flex items-center justify-center  text-[1.5rem] font-[600] leading-[100%] text-center cursor-pointer hover:text-[#ffb319] transition-colors duration-[.5s] focus:text-[#ffb319]" data-type="anime">Anime</button>
+                <div aria-hidden="true" role="presentation" class="w-1/3 h-[.25rem] rounded-[5.75rem] bg-[#f8B319] bottom-0 left-0 absolute bottomSlider transition-all duration-[.2s]"></div>
+            </div>
+            <div id="liveRegion" aria-live="polite" class="sr-only">
+            </div>
+        </div>
+
+        <!-- !Phone genre selection element. -->
+        <div class="w-max mb-4">
+    
+            <div>
+                <div role="region" aria-labelledby="genreLabel" class="mt-2 ml-5 flex items-start gap-[.5rem] p-[5px] text-[1.1rem] md:text-[1.2rem] relative customMenuContainer" tabindex="0">
+                    <div class="self-center border-b border-b-[#ffb319]">
+                        <span id="genreLabel">Genre</span>
+                    </div>
+    
+                    <button id="customMenuButton" class="w-max flex items-center justify-between gap-[1rem] px-4 py-2 border text-[#ffb319] border-[#ffb319] cursor-pointer" aria-haspopup="true" aria-expanded="false" aria-controls="menu" tabindex="-1">
+    
+                        <span>Action</span>
+                        <img class="rotate-90" src="images/next.svg" alt="next">
+                    </button>
+    
+                    <ul role="menu" aria-hidden="true" id="customMenu" class="absolute top-full s:top-1 s:left-[170px] px-2 bg-black w-[160px] py-2 h-[300px] overflow-scroll border border-[#ffb319] z-10 hidden phoneMenu">
+                            <div id="liveRegion" aria-live="polite" class="sr-only">
+                            </div>
+    
+                    </ul>
+                </div>
+                
+            </div>
+    
+        </div>
+    </div>
+
+    <div class="hidden md:block w-[19.6rem] lg:w-full h-[2.5rem] text-white text-center leading-[3.5rem] lg:mt-2 " aria-labelledby="search-heading">
+        <span id="search-heading" class="sr-only"> Search box Area: </span>
+        <p id="search-instructions" class="sr-only">Press Enter to go into input.</p>
+        <div tabindex="0" class="flex border border-[#ffb319] px-2 search-container">
+         
+         <input tabindex="-1" type="text" id="search-bar"  placeholder="Search" class="w-full bg-black outline-none search-bar  focusable" role="searchbox">
+         <button tabindex="-1" class="w-max search-button flex items-center justify-center focusable">
+            <img src="images/search-icon.svg" alt="search button icon" class="mx-4">
+         </button>
+         <button tabindex="-1" class="w-[40px] rounded-[.75rem] hidden" aria-label="Filter search results">
+             <img src="images/filter.svg" alt="filter">
+         </button>
+        </div>
+
+     </div>
+</div>
+<!-- ! END OF TAB SLIDER AND GENRE CUSTOM SELECT MENU CONTENT -->
+
+<!-- ! FOOTER CONTENT -->
+
+<div id="footerContent">
+    <div class="md:w-full lg:w-[500px] lg:ml-[15rem] min-h-[10rem] flex items-center justify-evenly ">
+        <div class="w-max md:w-full flex items-center text-black mt-2 ">
+            <a tabindex="-1" href="index.html" class="p-2 flex items-center px-2 transition-colors border  border-[#ffb319] hover:border-black homeLink">
+                <div>
+                    <img src="images/logo.png" alt="honey-movies">
+                </div>
+                <div class="flex flex-wrap flex-col text-[2.5rem] md:text-[3.5rem] leading-[100%] font-[700]">
+                    <span>Honey</span>
+                    <span>Movies</span>
+                </div>
+            </a>
+        </div>
+        
+        <ul class="md:w-1/2 lg:w-1/3 md:mt-4">
+            <li class="px-2 transition-colors border  border-[#ffb319] hover:border-black ">
+                <a tabindex="-1" href="index.html">Home</a>
+            </li>
+            <li class="px-2 transition-colors border  border-[#ffb319] hover:border-black ">
+                <a tabindex="-1" href="/">About Us</a>
+            </li>
+            <li class="px-2 transition-colors border  border-[#ffb319] hover:border-black ">
+                <a tabindex="-1" href="/">Contact Us</a>
+            </li>
+            <li class="px-2 transition-colors border  border-[#ffb319] hover:border-black ">
+                <a tabindex="-1" href="search.html">Search</a>
+            </li>
+        </ul>
+    </div>
+    <!-- !Divider -->
+    <div class="divider w-full h-[1px] md:w-[1px] md:h-full  bg-black md:rotate-90 lg:hidden"></div>
+
+    <div class="p-4 min-h-[5rem] md:w-[40%]">
+        <p class="text-center md:text-left ">
+            Copyright &copy; 2024 Honey Movies Co-operation of Western Virginia
+        </p>
+
+        <p class="text-center md:text-left ">
+            TERMS OF USE | PRIVACY POLICY | SETTINGS
+        </p>
+    </div>
+</div>
+
+<!-- ! END OF FOOTER CONTENT -->
+</body>
+</html

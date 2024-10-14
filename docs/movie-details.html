@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="output.css">
+    <title>Movie Details</title>
+</head>
+<body class="md:flex flex-col items-center justify-evenly bg-no-repeat bg-cover">
+    <div class="bg-black md:bg-transparent h-full pb-4">
+        <div class="text-white flex items-center ml-2 cursor-pointer bg-[#000000ee] p-4 pr-6 border border-[#ffb319] w-max">
+            <button
+                class="w-[3.1rem] h-[3.1rem] shrink-0  text-white flex items-center justify-center rounded-[1rem]">
+                <img src="images/prev.svg" alt="previous">
+            </button>
+            <a href="index.html"><span class="text-white font-[700] leading-[1.75rem] text-[1.2rem] md:text-[1.75rem] ml-4">Back to Home</span></a>
+        </div>
+
+
+        <div class="w-[97%] lg:w-max mx-auto md:flex  pb-4 mt-2 items-center movie-description bg-[#000000ee] border border-[#ffb319]">
+            <div class="ml-8">
+                <h1 class="text-white mt-4 text-[3rem] font-[700] leading-[3rem] movie-title"></h1>
+                <!-- !Rating -->
+                <div class="flex justify-between w-4/12 md:w-3/12 mt-4">
+                </div>
+                <!-- !End of rating -->
+                <div class="mt-2 bg-black  text-[#F8B319] w-max p-4  flex items-center gap-[.5rem]">
+                    <img src="images/star.svg" alt="ratings">
+                    <span class="text-[1.3rem] voteAverage">
+                    </span>
+                </div>
+                <div class="mt-2">
+                    <img src="images/imdb.png" alt="imdb">
+                </div>
+                <!-- !Description -->
+                <div class=" text-white h-max md:h-[300px] overflow-scroll movieSliderMenu mt-2 md:w-[40rem]">
+                    <p class="md:text-[1.8rem] movie-overview "></p>
+                   
+                </div>
+            </div>
+
+           <div class="pl-8 flex items-start flex-col-reverse">
+                <div class="flex items-center mt-4 gap-[1rem]">
+                    <button
+                        class="h-[3.5rem] flex text-white gap-[.6rem] bg-[rgba(91,60,60,0.2)] backdrop-blur-[5px] items-center justify-center p-4 px-5">
+                        <img src="images/watchlist.svg" alt="Add to Watchlist">
+                        Watchlist
+                    </button>
+                    <a href="#trailer"
+                        class="w-11/12 lg:w-[10rem] h-[3.5rem] flex gap-[.6rem] bg-[#F8B319] text-black items-center justify-center py-2 font-[700] cursor-pointer">
+                        Watch Trailer
+                   </a>
+                </div>
+
+                <!-- !Cover -->
+                <div>
+                    <div class="w-max mt-2 relative ">
+                        <div class="bg-black w-full h-full top-0 left-0 lg:mx-auto border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
+                            <img class="w-[50px]" src="images/logo.png" alt="">
+                        </div>
+                        <img class="movie-poster max-w-[200px]" src="" alt="">
+                    </div>
+                </div>
+           </div>
+
+           
+        </div>
+        
+    </div>
+    <section class="w-full lg:w-7/12 md:mx-auto px-2 py-8 overflow-hidden">
+      
+        <h2 class="w-max text-[3rem] text-white bg-[#000000ee] border border-[#ffb319] p-2 font-[800] leading-[100%] movie-title">Cast</h2>
+        <div class="cast-container movie-card-container movieSliderMenu overflow-scroll py-2 flex items-center gap-[.5rem]">
+            
+        </div>
+    </section>
+
+    <section id="trailer" class="w-full mx-auto lg:w-7/12 p-4 flex flex-col gap-[.5rem] trailer-parent">
+        <h2 class="text-[3rem] text-white bg-[#000000ee] w-max border border-[#ffb319] p-2 font-[800] leading-[100%] movie-title">Trailer</h2>
+        <div class="w-full md:w-max border border-[#ffb319] p-2 bg-[#000000ee] trailer-container">
+            <iframe class="w-full h-[315px] md:w-[600px]" frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <script src="pageScripts/movie-details.js" type="module"></script>
+</body>
+</html>
