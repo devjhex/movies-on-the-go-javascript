@@ -13,8 +13,14 @@ export function initializeSearchBar(){
                 const query = input.value.trim();
                 if(query){
                     const baseURL = `${window.location.protocol}//${window.location.host}`;
+
+                    if(window.location.host.includes('localhost') || window.location.hostname === "127.0.0.1"){
+                        window.location.href = `${baseURL}/docs/search.html?query=${encodeURIComponent(query)}`;
+                    }else {
+                        window.location.href = `${baseURL}/search.html?query=${encodeURIComponent(query)}`;
+                    }
     
-                    window.location.href = `${baseURL}/docs/search.html?query=${encodeURIComponent(query)}`;
+                    
     
                 } 
                 else {
@@ -55,7 +61,11 @@ export function initializeSearchBar(){
                     if (event.key === "Enter") {
                         const baseURL = `${window.location.protocol}//${window.location.host}`;
         
+                    if(window.location.host.includes('localhost') || window.location.hostname === "127.0.0.1"){
                         window.location.href = `${baseURL}/docs/search.html?query=${encodeURIComponent(query)}`;
+                    }else {
+                        window.location.href = `${baseURL}/search.html?query=${encodeURIComponent(query)}`;
+                    }
                     }
                 }else {
                     return;
