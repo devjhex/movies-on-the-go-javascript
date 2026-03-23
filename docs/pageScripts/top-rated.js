@@ -1,6 +1,6 @@
 import { loadSharedComponents } from './common.js';
 import { top_ratedUrl, fetchAndExecute } from './api.js';
-import { renderPage, renderAllMovies, toggleLoader, setInitialSlide, startSlideShow, fadeInSlide, fadeOutSlide, addButtonListeners } from './index.js';
+import { renderPage, addButtonListeners, startSlideShow } from './index.js';
 
 const genericFunctions = [addButtonListeners, startSlideShow];
 const genericArguments = { addButtonListeners: undefined, startSlideShow: undefined };
