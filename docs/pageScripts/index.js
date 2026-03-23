@@ -254,11 +254,10 @@ const genericArguments = {addButtonListeners:undefined, startSlideShow:undefined
 
 document.addEventListener('DOMContentLoaded', ()=>{
     addDefaults();
-    loadSharedComponents().then(()=>{
-        previewContainer = document.querySelector('.preview-container');
-        fetchAndExecute([getApiUrl()], [renderPage], genericFunctions, genericArguments);
-        tabbingFunctionality();
-    });
+    loadSharedComponents();
+    previewContainer = document.querySelector('.preview-container');
+    fetchAndExecute([getApiUrl()], [renderPage], genericFunctions, genericArguments);
+    tabbingFunctionality();
 });
 
 export { renderPage, renderAllMovies, toggleLoader, setInitialSlide, startSlideShow, fadeInSlide, fadeOutSlide, addButtonListeners, trapFocus };
