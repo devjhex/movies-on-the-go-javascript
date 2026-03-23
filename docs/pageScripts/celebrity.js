@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
                                 <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                             </div>
                             <div>
-                                <img src="${currentPosterImage}" alt="${movie.title}">
+                                <img src="${currentPosterImage}" alt="${movie.title}" onload="this.closest('.movieCard').querySelector('.loading').classList.add('invisible')">
                             </div>
                             <div class="bg-[#ffb319]">
                                  <h1 class="text-black font-[700] text-[1rem] text-center celebrity-name cursor-pointer line-clamp-1" data-id="${movie.id}">${movie.title}</h1>
