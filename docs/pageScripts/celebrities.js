@@ -1,11 +1,10 @@
-import { apiKey } from "./api.js";
+import { apiKey, imageUrl } from "./api.js";
 import { loadSharedComponents } from "./common.js";
 
 loadSharedComponents();
 
 document.addEventListener('DOMContentLoaded', (event)=>{
     const apiUrl = `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=en-US&page=1`;
-    const imageUrl = `https://image.tmdb.org/t/p/w200`;
 
     const celebritiesContainer = document.querySelector('.celebrities-container');
 
