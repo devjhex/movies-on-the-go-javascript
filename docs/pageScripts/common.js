@@ -8,7 +8,6 @@ export function loadSharedComponents() {
     if (document.querySelector('.headerContent')) initializeSearchBar();
     if (document.querySelector('.navBarContent')) initializeSideBar();
     if (document.querySelector('.sliderAndGenreContent')) {
-        initializeSearchBar();
         initializeSelectMenu();
         initializeTabSlider();
     }
