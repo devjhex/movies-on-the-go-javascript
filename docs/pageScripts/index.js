@@ -1,67 +1,31 @@
-    const apiKey = '9669f3c4a020adb344371306e3fd4811' // my api key.
-    const imageUrl = `https://image.tmdb.org/t/p/original`;
-    const backdropUrl = `https://image.tmdb.org/t/p/original`; //base url and fileSize together
-    const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
+import { loadSharedComponents } from './common.js';
+import { apiKey, imageUrl, backdropUrl, moviesUpcomingUrl, top_ratedUrl, tvShowsUpcomingUrl, animeUpcomingUrl, fetchAndExecute } from './api.js';
 
-    let apiUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`;
-    const moviesUpcomingUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`;
-    const top_ratedUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`;
-    const tvShowsUpcomingUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=1`;
-    const animeUpcomingUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&language=en-US&with_genres=16&page=1`;
+let previewContainer;
+let currentIndex = 0;
+let slides;
+let totalSlides;
+const transitionDuration = 1000;
+const displayDuration = 5000;
+let slideInterval;
+let fadeTimeout;
 
-    let movies = [];
-
-    const previewContainer = document.querySelector(".preview-container");
-    let currentIndex = 0;
-    let slides;
-    let totalSlides;
-    const transitionDuration = 1000;
-    const displayDuration = 5000;
-    let slideInterval;
-    let fadeTimeout;
-
-    let currentTab = localStorage.getItem('activeTab');
-    let currentPage = localStorage.getItem('activePage');
-
-    if(currentTab === "movies" && currentPage === "home"){
-        apiUrl = moviesUpcomingUrl;
-    }else if(currentTab === "movies" && currentPage === "top-rated"){
-        apiUrl = top_ratedUrl;
-    }else if(currentTab === "tv"){
-        apiUrl = tvShowsUpcomingUrl;
-    }else if(currentTab === "anime"){
-        apiUrl = animeUpcomingUrl;
-    }
+function getApiUrl() {
+    const currentTab = localStorage.getItem('activeTab');
+    const currentPage = localStorage.getItem('activePage');
+    if(currentTab === "movies" && currentPage === "top-rated") return top_ratedUrl;
+    if(currentTab === "tv") return tvShowsUpcomingUrl;
+    if(currentTab === "anime") return animeUpcomingUrl;
+    return moviesUpcomingUrl;
+}
     
 
-let endpoints = [apiUrl, apiUrl];
-const callbacks = [previewMovies, renderAllMovies];
-const genericFunctions = [addButtonListeners, toggleLoader, startSlideShow, tabbingFunctionality];
-const genericArguments = {addButtonListeners:undefined, toggleLoader:'hideLoader', startSlideShow:undefined, tabbingFunctionality:undefined};
-
-
-
-async function fetchMovies (endpoint) {
-    try {
-        const response = await fetch (endpoint);
-
-        if(!response) throw new Error ('Network response was not ok');
-
-        const data = await response.json();
-
-        previewMovies(data);
-        renderAllMovies(data);
-        addButtonListeners();
-        
-
-        toggleLoader("hideLoader")
-
-        startSlideShow();
-
-    } catch (error) {
-        console.error('Fetch error occurred.', error);
-    }
+function renderPage(data) {
+    previewMovies(data);
+    renderAllMovies(data);
 }
+
+
 
 function previewMovies(movies) {
   const previewContainer = document.querySelector(".preview-container");
@@ -75,6 +39,7 @@ function previewMovies(movies) {
                           <div class="bg-black w-full h-full top-0 left-0 lg:mx-auto border border-[#ffb319] absolute flex items-center justify-center z-[9999] animate-imageHolder loading">
                                       <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                           </div>
+                          <img src="${backdropUrl}${movie.backdrop_path}" alt="" class="sr-only" onload="this.closest('.preview-slide').querySelector('.loading').classList.add('invisible')">
                           <div class="relative h-full flex justify-between flex-col z-40">
                           <div class="flex items-center p-2 md:p-4">
                               <h2 class="w-full text-[3rem] font-[800] pt-[1.5rem] ml-[1.8rem] movie-title">${movie.title ? movie.title : movie.name}</h2>
@@ -123,7 +88,7 @@ function renderAllMovies(movies){
                             <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                         </div>
                         <div class="w-max overflow-hidden flex items-start">
-                          <img class="object-contain w-full h-full" src="${imageUrl}${movie.poster_path}" alt="${movie.title ? movie.title : movie.name}">
+                          <img class="object-contain w-full h-full" src="${imageUrl}${movie.poster_path}" alt="${movie.title ? movie.title : movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                         </div>
                         <div class="absolute right-0">
                                
@@ -206,58 +171,12 @@ function fadeInSlide(index) {
 }
 
 function toggleLoader(action){
-    
     let allLoaders = document.querySelectorAll('.loading');
-
-    if(action === "hideLoader"){
-        setTimeout(()=>{
-            allLoaders.forEach((loader)=>{
-                loader.classList.add('invisible');
-            });
-        }, 2000);
-    }else if(action === "showLoader"){
+    if(action === "showLoader"){
         allLoaders.forEach((loader)=>{
             loader.classList.remove('invisible');
         });
     }
-
-}
-
-async function fetchAndExecute(endpoints, callbacks, customFunctions, customFunctionArguments){
-    try {
-        //Ensure the endpoints array and the callbacks array are the same length
-        if(endpoints.length !== callbacks.length){
-            throw new Error('The number of endpoints must match the number of callbacks.');
-        }
-
-        if(callbacks.length > 0){
-            //Fetch all data simultaneously
-        const responses = await Promise.all(endpoints.map(endpoint=>fetch(endpoint)));
-
-        //convert each response to json
-        const data = await Promise.all(responses.map(response=>response.json()));
-
-        //create variable to hold all the results
-        const results = [];
-
-        //Execute each callback with its corresponding data
-        data.forEach((result, index)=>{
-            results.push(result);
-            callbacks[index](result);
-        })
-
-        //Execute the custom functions that are not related to the data but need to called when the data arrives.
-        if (customFunctions.length > 0) {
-            customFunctions.forEach(func=>func(customFunctionArguments[func.name]));
-        }
-        }
-        
-        return results;
-        
-    } catch (error) {
-        console.error('Error fetching data', error);
-    }
-   
 }
 
 function trapFocus(event, firstFocusableElement, lastFocusableElement){
@@ -330,19 +249,16 @@ function addDefaults(){
     }
 }
 
-function fetchExec(endpoints, callbacks){
-    if(endpoints.length !== callbacks.length){
-     throw Error('The number of endpoints must match the number of callbacks.');
-    }
-    else{
-        console.log('yaaay it is completely fine.!!!');
-    }
-}
+const genericFunctions = [addButtonListeners, startSlideShow];
+const genericArguments = {addButtonListeners:undefined, startSlideShow:undefined};
 
-document.addEventListener('DOMContentLoaded', (event)=>{
+document.addEventListener('DOMContentLoaded', ()=>{
     addDefaults();
-    fetchAndExecute(endpoints, callbacks, genericFunctions, genericArguments); 
-    tabbingFunctionality();
+    loadSharedComponents().then(()=>{
+        previewContainer = document.querySelector('.preview-container');
+        fetchAndExecute([getApiUrl()], [renderPage], genericFunctions, genericArguments);
+        tabbingFunctionality();
+    });
 });
 
-export { apiKey, imageUrl, backdropUrl, genresUrl, fetchMovies, fetchAndExecute, toggleLoader, renderAllMovies, setInitialSlide, startSlideShow, fadeInSlide, fadeOutSlide, addButtonListeners, trapFocus, fetchExec };
+export { renderPage, renderAllMovies, toggleLoader, setInitialSlide, startSlideShow, fadeInSlide, fadeOutSlide, addButtonListeners, trapFocus };
