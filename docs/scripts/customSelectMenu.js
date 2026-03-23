@@ -1,4 +1,5 @@
-import { fetchMovies, fetchAndExecute, apiKey } from "../pageScripts/index.js";
+import { fetchAndExecute, apiKey } from "../pageScripts/api.js";
+import { renderPage } from "../pageScripts/index.js";
 
 export function initializeSelectMenu(){
     const customMenuContainer = document.querySelector('.customMenuContainer');
@@ -44,46 +45,6 @@ export function initializeSelectMenu(){
         }
 
         /* For the user moving up and down the items in the menu */
-        // menuItems.forEach(item=>{
-        //     item.addEventListener('keydown', (event)=>{
-        //         console.log(event.currentTarget.key);
-        //         if(event.currentTarget.key === "ArrowDown"){
-        //             event.preventDefault();
-        //             const nextItem = item.nextElementSibling || menuItems[0];
-        //             nextItem.focus();
-        //         }else if(event.key === "ArrowUp") {
-                    
-        //             const previousItem = item.previousElementSibling || menuItems[menuItems.length - 1];
-        //             previousItem.focus();
-        //         }else if(event.key === 'Escape'){
-        //             button.focus();
-        //             button.setAttribute('aria-expanded', 'false');
-        //             customMenu.setAttribute('aria-hidden', 'true');     
-        //             customMenu.classList.add('hidden');           
-        //         }else if(event.key === 'Enter') {
-
-        //             /* Save the current element that has been clicked. */
-        //             clickedGenre = event.target;
-        //             console.log(clickedGenre);
-
-        //             button.focus();
-        //             button.setAttribute('aria-expanded', 'false');
-        //             customMenu.setAttribute('aria-hidden', 'true');     
-        //             customMenu.classList.add('hidden');
-
-        //             reselectItem(menuItems, event.target, 'active');
-
-        //             resetToggleIndicator(menuItems, event.target, 'hidden');
-
-        //             customMenuButton.querySelector('span').textContent = event.target.querySelector('span').textContent;
-                    
-        //             console.log(customMenuButton.querySelector('span').textContent, event.target.querySelector('span').textContent);
-
-        //             liveRegion.textContent = event.target.querySelector('span').textContent;
-
-        //         }
-        //     })
-        // });
         
         /* For when the user uses the tab to move through the items in the menu. */
         const firstFocusableElement = menuItems[0];
@@ -194,7 +155,7 @@ export function initializeSelectMenu(){
 
                 resetToggleIndicator(document.querySelectorAll('[role="menuItem"]'), genre, 'hidden');
 
-                fetchMovies(customUrl);
+                fetchAndExecute([customUrl], [renderPage]);
 
                 customMenu.classList.add('hidden');
 
