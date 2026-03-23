@@ -9,16 +9,9 @@ export const content = [
   "docs/celebrities.html",
   "docs/celebrity.html",
   "docs/search.html",
-  "docs/pageScripts/index.js",
-  "docs/pageScripts/movie-details.js",
-  "docs/pageScripts/top-rated.js",
-  "docs/pageScripts/discover.js",
-  "docs/pageScripts/celebrities.js",
-  "docs/pageScripts/celebrity.js",
-  "docs/pageScripts/search.js",
-  "docs/scripts/preview.js",
-  "docs/shared.html",
-  "docs/dist/bundle.js"
+  "docs/pageScripts/*.js",
+  "docs/scripts/*.js",
+  "docs/shared.html"
 ];
 export const theme = {
   extend: {
