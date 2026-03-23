@@ -1,8 +1,8 @@
-import { backdropUrl } from "./index.js";
-import { imageUrl } from "./index.js";
-import { apiKey } from "./index.js";
-import { genresUrl } from "./index.js";
-import { toggleLoader } from "./index.js";
+import { apiKey } from "./api.js";
+import { loadSharedComponents } from "./common.js";
+
+loadSharedComponents();
+
 document.addEventListener('DOMContentLoaded', (event)=>{
     const apiUrl = `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=en-US&page=1`;
     const imageUrl = `https://image.tmdb.org/t/p/w200`;
@@ -21,9 +21,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         renderCelebrities(data.results);
 
         
-        setTimeout(()=>{
-            toggleLoader('hideLoader');
-        }, 2000);
+
 
         } catch (error) {
             console.error('Fetch error occurred.', error);
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
                                 <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                     </div>
                         <div class="profie-image-container">
-                            <img class="w-full h-full" src="${currentPosterImage}" alt="${celebrity.name}">
+                            <img class="w-full h-full" src="${currentPosterImage}" alt="${celebrity.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                         </div>
             
                         <div>

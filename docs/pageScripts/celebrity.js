@@ -1,6 +1,7 @@
-import { apiKey } from "./index.js";
-import { toggleLoader } from "./index.js";
-import { fetchAndExecute } from "./index.js";
+import { apiKey, fetchAndExecute } from "./api.js";
+import { loadSharedComponents } from "./common.js";
+
+loadSharedComponents();
 
 document.addEventListener('DOMContentLoaded', (event)=>{
     const urlParams = new URLSearchParams(window.location.search);
@@ -9,12 +10,12 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     const apiUrl = `https://api.themoviedb.org/3/person/${celebrityId}?api_key=${apiKey}`;
     const creditsUrl = `https://api.themoviedb.org/3/person/${celebrityId}/combined_credits?api_key=${apiKey}`;
 
-    let endpoints = [apiUrl, creditsUrl, creditsUrl];
+    let endpoints = [apiUrl, creditsUrl];
 
-    const callbacks = [renderCelebrity, renderCelebrityCredits, renderMoviesPlayed];
+    const callbacks = [renderCelebrity, renderCelebrityMovies];
 
-    const genericFunctions = [toggleLoader];
-    const genericArguments = {toggleLoader:'hideLoader'};
+    const genericFunctions = [];
+    const genericArguments = {};
 
     const imageUrl = `https://image.tmdb.org/t/p/w300`;
 
@@ -45,17 +46,13 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         
     }
 
-    function renderCelebrityCredits(credits){
-        //render known credits
+    function renderCelebrityMovies(credits){
         document.querySelector('.known-credits').textContent = credits.cast.length;
-    }
 
-    function renderMoviesPlayed(movies){
         const movieCardContainer = document.querySelector('.movie-card-container');
+        const movies = credits.cast.slice(0, 20);
 
-        movies = movies.cast.slice(0,20);
-
-        movieCardContainer.innerHTML = movies.map((movie)=>{
+        movieCardContainer.innerHTML = movies.map((movie) => {
             let currentPosterImage = `${imageUrl}${movie.poster_path}`;
 
                     if(movie.poster_path === null) {

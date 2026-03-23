@@ -1,7 +1,4 @@
-import { imageUrl } from "./index.js";
-import { apiKey } from "./index.js";
-import { toggleLoader } from "./index.js";
-import { fetchAndExecute } from "./index.js";
+import { apiKey, imageUrl, backdropUrl, fetchAndExecute } from "./api.js";
 
 document.addEventListener('DOMContentLoaded', ()=>{
     const urlParams = new URLSearchParams(window.location.search);
@@ -19,8 +16,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     const callbacks = [renderMovieDetails, renderCast, filterTrailers];
 
-    const genericFunctions = [toggleLoader, displayMovieTrailer];
-    const genericArguments = {toggleLoader:'hideLoader'};
+    const genericFunctions = [displayMovieTrailer];
+    const genericArguments = {};
 
 
     function displayMovieTrailer(trailer){
@@ -65,10 +62,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.querySelector('.movie-title').textContent = movieDetails.title ? movieDetails.title : movieDetails.name;
 
         //render the background-image
-        document.body.style.backgroundImage = `url(${imageUrl}${movieDetails.backdrop_path})`;
+        document.body.style.backgroundImage = `url(${backdropUrl}${movieDetails.backdrop_path})`;
 
-        //render the poster-image
-        document.querySelector('.movie-poster').src = `${imageUrl}${movieDetails.poster_path}`;
+        const poster = document.querySelector('.movie-poster');
+        poster.onload = () => document.querySelector('.loading').classList.add('invisible');
+        poster.src = `${imageUrl}${movieDetails.poster_path}`;
         
         //render the voteAverage
         document.querySelector('.voteAverage').textContent = `${movieDetails.vote_average.toFixed(1)} (${movieDetails.vote_count})`;
@@ -84,19 +82,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const castContainer = document.querySelector('.cast-container');
 
       if(people.length > 0){
-        castContainer.innerHTML = people.map((person)=>{
-            let currentPosterImage = `${imageUrl}${person.profile_path}`;
-
-                    if(person.profile_path === null) {
-                        currentPosterImage = 'images/logo.png';
-                        
-                    }
+        castContainer.innerHTML = people.slice(0, 20).map((person)=>{
+            let currentPosterImage = person.profile_path ? `${imageUrl}${person.profile_path}` : 'images/logo.png';
             return `<div class="movieCard p-1 w-[150px] h-full shrink-0 border border-[#ffb319] bg-black relative celebrity cursor-pointer" data-id="${person.id}">
                             <div class="bg-black w-full h-full top-0 left-0 lg:mx-auto border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
                                 <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                             </div>
                             <div class="bg-black flex items-center justify-center">
-                                <img class="" src="${currentPosterImage}" alt="${person.name}">
+                                <img class="" src="${currentPosterImage}" alt="${person.name}" onload="this.closest('.movieCard').querySelector('.loading').classList.add('invisible')">
                             </div>
                             <div class="bg-[#ffb319]">
                                 <h1 class="text-black font-[700] text-[1rem] text-center celebrity-name cursor-pointer line-clamp-1" data-id="${person.id}">${person.name}</h1>
