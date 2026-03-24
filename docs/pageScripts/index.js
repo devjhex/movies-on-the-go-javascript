@@ -1,5 +1,5 @@
 import { loadSharedComponents } from './common.js';
-import { apiKey, imageUrl, backdropUrl, moviesUpcomingUrl, top_ratedUrl, tvShowsUpcomingUrl, animeUpcomingUrl, fetchAndExecute } from './api.js';
+import { apiKey, imageUrl, backdropUrl, moviesUpcomingUrl, top_ratedUrl, tvShowsUpcomingUrl, animeUpcomingUrl, fetchAndExecute, posterSrcset, backdropSrcset } from './api.js';
 
 let previewContainer;
 let currentIndex = 0;
@@ -39,7 +39,7 @@ function previewMovies(movies) {
                           <div class="bg-black w-full h-full top-0 left-0 lg:mx-auto border border-[#ffb319] absolute flex items-center justify-center z-[9999] animate-imageHolder loading">
                                       <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                           </div>
-                          <img src="${backdropUrl}${movie.backdrop_path}" alt="" class="sr-only" onload="this.closest('.preview-slide').querySelector('.loading').classList.add('invisible')">
+                          <img src="${backdropUrl}${movie.backdrop_path}" srcset="${backdropSrcset(movie.backdrop_path)}" sizes="100vw" alt="" class="sr-only" onload="this.closest('.preview-slide').querySelector('.loading').classList.add('invisible')">
                           <div class="relative h-full flex justify-between flex-col z-40">
                           <div class="flex items-center p-2 md:p-4">
                               <h2 class="w-full text-[3rem] font-[800] pt-[1.5rem] ml-[1.8rem] movie-title">${movie.title ? movie.title : movie.name}</h2>
@@ -88,7 +88,7 @@ function renderAllMovies(movies){
                             <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                         </div>
                         <div class="w-max overflow-hidden flex items-start">
-                          <img class="object-contain w-full h-full" src="${imageUrl}${movie.poster_path}" alt="${movie.title ? movie.title : movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                          <img class="object-contain w-full h-full" src="${imageUrl}${movie.poster_path}" srcset="${posterSrcset(movie.poster_path)}" sizes="192px" alt="${movie.title ? movie.title : movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                         </div>
                         <div class="absolute right-0">
                                

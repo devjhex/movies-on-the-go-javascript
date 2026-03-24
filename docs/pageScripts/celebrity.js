@@ -1,4 +1,4 @@
-import { apiKey, fetchAndExecute } from "./api.js";
+import { apiKey, fetchAndExecute, posterSrcset, profileSrcset } from "./api.js";
 import { loadSharedComponents } from "./common.js";
 
 loadSharedComponents();
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     function renderCelebrity(celebrity){
         //render celebrity poster
         document.querySelector('.celebrity-image').src = `${imageUrl}${celebrity.profile_path}`;
+        document.querySelector('.celebrity-image').srcset = profileSrcset(celebrity.profile_path);
+        document.querySelector('.celebrity-image').sizes = '(min-width: 760px) 300px, 185px';
 
         //render celebrity name
         document.querySelector('.celebrity-name').textContent = celebrity.name;
@@ -64,7 +66,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
                                 <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                             </div>
                             <div>
-                                <img src="${currentPosterImage}" alt="${movie.title}" onload="this.closest('.movieCard').querySelector('.loading').classList.add('invisible')">
+                                <img src="${currentPosterImage}" srcset="${movie.poster_path ? posterSrcset(movie.poster_path) : ''}" sizes="150px" alt="${movie.title}" onload="this.closest('.movieCard').querySelector('.loading').classList.add('invisible')">
                             </div>
                             <div class="bg-[#ffb319]">
                                  <h1 class="text-black font-[700] text-[1rem] text-center celebrity-name cursor-pointer line-clamp-1" data-id="${movie.id}">${movie.title}</h1>

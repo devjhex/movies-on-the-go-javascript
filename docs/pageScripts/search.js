@@ -1,4 +1,4 @@
-import { apiKey, imageUrl } from "./api.js";
+import { apiKey, imageUrl, posterSrcset, profileSrcset } from "./api.js";
 import { loadSharedComponents } from "./common.js";
 
 loadSharedComponents();
@@ -103,7 +103,7 @@ function renderSearchResults(movies, type) {
                     <div class="bg-black w-full h-full top-0 left-0 border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
                         <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                     </div>
-                    <img class="${movie.poster_path ? 'h-full' : ''}" src="${currentPosterImage}" alt="${movie.title}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                    <img class="${movie.poster_path ? 'h-full' : ''}" src="${currentPosterImage}" srcset="${movie.poster_path ? posterSrcset(movie.poster_path) : ''}" sizes="100px" alt="${movie.title}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                 </div>
                 <div class="summaryDescription">
                     <h1 class="text-[1.4rem] font-bold line-clamp-1">${movie.title}</h1>
@@ -118,7 +118,7 @@ function renderSearchResults(movies, type) {
                     <div class="bg-black w-full h-full top-0 left-0 border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
                         <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                     </div>
-                    <img class="${movie.profile_path ? 'h-full' : ''}" src="${currentProfileImage}" alt="${movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                    <img class="${movie.profile_path ? 'h-full' : ''}" src="${currentProfileImage}" srcset="${movie.profile_path ? profileSrcset(movie.profile_path) : ''}" sizes="100px" alt="${movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                 </div>
                 <div class="summaryDescription">
                     <h1 class="text-[1.4rem] font-bold line-clamp-1">${movie.name}</h1>
@@ -133,7 +133,7 @@ function renderSearchResults(movies, type) {
                     <div class="bg-black w-full h-full top-0 left-0 border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
                         <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                     </div>
-                    <img class="${movie.poster_path ? 'h-full' : ''}" src="${currentPosterImage}" alt="${movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                    <img class="${movie.poster_path ? 'h-full' : ''}" src="${currentPosterImage}" srcset="${movie.poster_path ? posterSrcset(movie.poster_path) : ''}" sizes="100px" alt="${movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                 </div>
                 <div class="summaryDescription">
                     <h1 class="text-[1.4rem] font-bold line-clamp-1">${movie.name}</h1>
@@ -151,7 +151,7 @@ function renderSearchResults(movies, type) {
                         <div class="bg-black w-full h-full top-0 left-0 border border-[#ffb319] absolute flex items-center justify-center z-30 animate-imageHolder loading">
                             <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                         </div>
-                        <img class="${movie.poster_path ? 'h-full' : ''}" src="${currentPosterImage}" alt="${movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                        <img class="${movie.poster_path ? 'h-full' : ''}" src="${currentPosterImage}" srcset="${movie.poster_path ? posterSrcset(movie.poster_path) : ''}" sizes="100px" alt="${movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                     </div>
                     <div class="summaryDescription">
                         <h1 class="text-[1.4rem] font-bold line-clamp-1">${movie.name}</h1>

@@ -1,4 +1,4 @@
-import { apiKey, imageUrl, backdropUrl, fetchAndExecute } from "./api.js";
+import { apiKey, imageUrl, backdropUrl, fetchAndExecute, posterSrcset, profileSrcset } from "./api.js";
 
 document.addEventListener('DOMContentLoaded', ()=>{
     const urlParams = new URLSearchParams(window.location.search);
@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const poster = document.querySelector('.movie-poster');
         poster.onload = () => document.querySelector('.loading').classList.add('invisible');
         poster.src = `${imageUrl}${movieDetails.poster_path}`;
+        poster.srcset = posterSrcset(movieDetails.poster_path);
+        poster.sizes = '(min-width: 760px) 342px, 185px';
         
         //render the voteAverage
         document.querySelector('.voteAverage').textContent = `${movieDetails.vote_average.toFixed(1)} (${movieDetails.vote_count})`;
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                                 <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                             </div>
                             <div class="bg-black flex items-center justify-center">
-                                <img class="" src="${currentPosterImage}" alt="${person.name}" onload="this.closest('.movieCard').querySelector('.loading').classList.add('invisible')">
+                                <img class="" src="${currentPosterImage}" srcset="${person.profile_path ? profileSrcset(person.profile_path) : ''}" sizes="150px" alt="${person.name}" onload="this.closest('.movieCard').querySelector('.loading').classList.add('invisible')">
                             </div>
                             <div class="bg-[#ffb319]">
                                 <h1 class="text-black font-[700] text-[1rem] text-center celebrity-name cursor-pointer line-clamp-1" data-id="${person.id}">${person.name}</h1>

@@ -1,4 +1,4 @@
-import { apiKey, imageUrl } from "./api.js";
+import { apiKey, imageUrl, profileSrcset } from "./api.js";
 import { loadSharedComponents } from "./common.js";
 
 loadSharedComponents();
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
                                 <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                     </div>
                         <div class="profie-image-container">
-                            <img class="w-full h-full" src="${currentPosterImage}" alt="${celebrity.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                            <img class="w-full h-full" src="${currentPosterImage}" srcset="${celebrity.profile_path ? profileSrcset(celebrity.profile_path) : ''}" sizes="(min-width: 760px) 250px, 185px" alt="${celebrity.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                         </div>
             
                         <div>
