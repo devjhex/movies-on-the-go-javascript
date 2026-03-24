@@ -11,7 +11,6 @@ export const content = [
   "docs/search.html",
   "docs/pageScripts/*.js",
   "docs/scripts/*.js",
-  "docs/shared.html"
 ];
 export const theme = {
   extend: {
@@ -25,10 +24,10 @@ export const theme = {
       '2xl': '1536px',
     },
     fontFamily: {
-      bebas: 'bebas',
-      lato: 'lato',
-      lucky: 'lucky',
-      roboto: 'roboto',
+      bebas: ['bebas', 'bebas-fallback', 'Arial Narrow', 'Arial', 'sans-serif'],
+      lato: ['lato', 'lato-fallback', 'Helvetica Neue', 'Arial', 'sans-serif'],
+      lucky: ['lucky', 'lucky-fallback', 'Impact', 'Arial Black', 'sans-serif'],
+      roboto: ['roboto', 'roboto-fallback', 'Arial Narrow', 'Arial', 'sans-serif'],
     },
     keyframes: {
       fadeIn: {

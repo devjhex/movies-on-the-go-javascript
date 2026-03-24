@@ -1,99 +1,121 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-    @font-face {
-        font-family:'bebas';
-        src: url(fonts/BebasNeue-Regular.ttf);
+@source "../docs/pageScripts/*.js";
+@source "../docs/scripts/*.js";
+
+@theme {
+    --breakpoint-xs: 320px;
+    --breakpoint-s: 375px;
+    --breakpoint-sm: 412px;
+    --breakpoint-md: 760px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+
+    --font-family-bebas: 'bebas', 'bebas-fallback', 'Arial Narrow', Arial, sans-serif;
+    --font-family-lato: 'lato', 'lato-fallback', 'Helvetica Neue', Arial, sans-serif;
+    --font-family-lucky: 'lucky', 'lucky-fallback', Impact, 'Arial Black', sans-serif;
+    --font-family-roboto: 'roboto', 'roboto-fallback', 'Arial Narrow', Arial, sans-serif;
+
+    --animate-fadeIn: fadeIn 1s linear forwards;
+    --animate-fadeOut: fadeOut 1s linear forwards;
+    --animate-imageHolder: imageHolder 2s linear infinite;
+
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
     }
-    @font-face {
-        font-family:'lato';
-        src: url(fonts/Lato/Lato-Black.ttf);
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
     }
-    @font-face {
-        font-family:'lucky';
-        src: url(fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf);
+    @keyframes imageHolder {
+        0% { background-color: #000000; }
+        50% { background-color: #FFB319; }
+        100% { background-color: #000000; }
     }
-    @font-face {
-        font-family:'roboto';
-        src: url(fonts/RobotoCondensed-VariableFont_wght.ttf);
-    }
+}
+
+@font-face {
+    font-family: 'bebas';
+    src: url(fonts/BebasNeue-Regular.woff2) format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'bebas-fallback';
+    src: local('Arial Narrow'), local('Arial');
+    ascent-override: 90%;
+    descent-override: 30%;
+    line-gap-override: 0%;
+    size-adjust: 108%;
+}
+@font-face {
+    font-family: 'lato';
+    src: url(fonts/Lato/Lato-Black.woff2) format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'lato-fallback';
+    src: local('Helvetica Neue'), local('Arial');
+    ascent-override: 80%;
+    descent-override: 20%;
+    line-gap-override: 20%;
+    size-adjust: 97%;
+}
+@font-face {
+    font-family: 'lucky';
+    src: url(fonts/Luckiest_Guy/LuckiestGuy-Regular.woff2) format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'lucky-fallback';
+    src: local('Impact'), local('Arial Black');
+    ascent-override: 70%;
+    descent-override: 30%;
+    line-gap-override: 0%;
+    size-adjust: 105%;
+}
+@font-face {
+    font-family: 'roboto';
+    src: url(fonts/RobotoCondensed-VariableFont_wght.woff2) format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'roboto-fallback';
+    src: local('Arial Narrow'), local('Arial');
+    ascent-override: 75%;
+    descent-override: 25%;
+    line-gap-override: 5%;
+    size-adjust: 98%;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-.overflow-x-scroll::-webkit-scrollbar{
-    display: none;
-}
+.overflow-x-scroll::-webkit-scrollbar { display: none; }
 
-html::-webkit-scrollbar{
-    width: 5px;
-    
-}
-    
-html::-webkit-scrollbar-thumb{
-    background-color: #f8B319;
-    transition-property: border;
-    transition-duration: .3s;
-}
+html::-webkit-scrollbar { width: 5px; }
+html::-webkit-scrollbar-thumb { background-color: #f8B319; transition: border .3s; }
 
-.phoneMenu::-webkit-scrollbar{
-    width: 5px;
-    height: 0px;
-    
-}
-.phoneMenu::-webkit-scrollbar-thumb{
-    background-color: #f8B319;
-    transition-property: border;
-    transition-duration: .3s;
-}
+.phoneMenu::-webkit-scrollbar { width: 5px; height: 0px; }
+.phoneMenu::-webkit-scrollbar-thumb { background-color: #f8B319; }
 
-.phoneGenreMenu::-webkit-scrollbar{
-    width: 5px;
-    padding-top: .2rem;
-    
-}
-.phoneGenreMenu::-webkit-scrollbar-thumb{
-    background-color: #f8B319;
-    transition-property: border;
-    transition-duration: .3s;
-}
+.phoneGenreMenu::-webkit-scrollbar { width: 5px; padding-top: .2rem; }
+.phoneGenreMenu::-webkit-scrollbar-thumb { background-color: #f8B319; }
 
-.movieSliderMenu::-webkit-scrollbar{
-    height: 5px;
-    width: 0;
-}
+.movieSliderMenu::-webkit-scrollbar { height: 5px; width: 0; }
+.movieSliderMenu::-webkit-scrollbar-thumb { background-color: #f8B319; }
 
-.movieSliderMenu::-webkit-scrollbar-thumb{
-    background-color: #f8B319;
-    transition-property: border;
-    transition-duration: .3s;
-}
+.active > span { color: #f8B319; }
+.activeTab { color: #f8B319; }
+.navSelected { color: #f8B319; border: 1px solid #f8B319; }
 
-.active > span {
-    color:#f8B319;
-}
-.activeTab {
-    color:#f8B319;
-}
-.navSelected {
-    color: #f8B319;
-    border: 1px solid #f8B319;
-}
+.fade-in { opacity: 1; }
+.fade-out { opacity: 0; }
 
-.fade-in {
-    opacity: 1;
-}
-.fade-out {
-    opacity: 0;
-}
+.preview-slide { transition: opacity 1s ease-in-out; }
 
-.preview-slide{
-    transition: opacity 1s ease-in-out;
-}
 .line-clamp-3 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
