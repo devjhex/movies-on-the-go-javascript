@@ -5,7 +5,7 @@
   "main": "tailwind.config.js",
   "scripts": {
     "tailwind": "@tailwindcss/cli -i docs/input.css -o docs/output.css --watch",
-    "tailwind:build": "@tailwindcss/cli -i docs/input.css -o docs/output.css",
+    "tailwind:build": "@tailwindcss/cli -i docs/input.css -o docs/output.css --minify",
     "test": "vitest --reporter verbose",
     "build": "webpack",
     "start": "webpack serve --open"
