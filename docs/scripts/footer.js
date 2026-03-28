@@ -1,4 +1,4 @@
-import { trapFocus } from "../pageScripts/index.js";
+import { trapFocus } from "../pageScripts/api.js";
 export function initializeFooter() {
     const footerParent = document.querySelector('footer');
     let allFooterLinks = Array.from(footerParent.querySelectorAll('a'));

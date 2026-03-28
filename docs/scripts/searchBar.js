@@ -1,3 +1,4 @@
+import { trapFocus } from "../pageScripts/api.js";
 
 export function initializeSearchBar(){
     
@@ -74,25 +75,4 @@ export function initializeSearchBar(){
             })
         })
 
-        function trapFocus(event, firstFocusableElement, lastFocusableElement){
-    
-            if(event.key === 'Tab' &&  !event.shiftKey){
-                //if the user presses the tab key without the shift key and the last focusable element is focused focus the first element.
-        
-                if(document.activeElement === lastFocusableElement) {
-                    event.preventDefault();
-        
-                    firstFocusableElement.focus();
-                }
-            } else if(event.key === 'Tab' && event.shiftKey){
-                //if the user presses the tab key with the shift key and the first focusable element is focused focus the last focusable element.
-                if(document.activeElement === firstFocusableElement) {
-                    event.preventDefault();
-        
-                    lastFocusableElement.focus();
-                }
-            }else {
-                return;
-            }
-         }
 }

@@ -1,5 +1,5 @@
 import { loadSharedComponents } from './common.js';
-import { apiKey, imageUrl, backdropUrl, moviesUpcomingUrl, top_ratedUrl, tvShowsUpcomingUrl, animeUpcomingUrl, fetchAndExecute, posterSrcset, backdropSrcset } from './api.js';
+import { apiKey, imageUrl, backdropUrl, moviesUpcomingUrl, top_ratedUrl, tvShowsUpcomingUrl, animeUpcomingUrl, fetchAndExecute, posterSrcset, backdropSrcset, trapFocus } from './api.js';
 
 let previewContainer;
 let currentIndex = 0;
@@ -18,14 +18,11 @@ function getApiUrl() {
     if(currentTab === "anime") return animeUpcomingUrl;
     return moviesUpcomingUrl;
 }
-    
 
 function renderPage(data) {
     previewMovies(data);
     renderAllMovies(data);
 }
-
-
 
 function previewMovies(movies) {
   const previewContainer = document.querySelector(".preview-container");
@@ -88,7 +85,7 @@ function renderAllMovies(movies){
                             <img class="w-[50px]" src="images/logo.png" alt="Honey movies logo">
                         </div>
                         <div class="w-max overflow-hidden flex items-start">
-                          <img class="object-contain w-full h-full" src="${imageUrl}${movie.poster_path}" srcset="${posterSrcset(movie.poster_path)}" sizes="192px" alt="${movie.title ? movie.title : movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
+                          <img loading="lazy" class="object-contain w-full h-full" src="${imageUrl}${movie.poster_path}" srcset="${posterSrcset(movie.poster_path)}" sizes="192px" alt="${movie.title ? movie.title : movie.name}" onload="this.closest('article').querySelector('.loading').classList.add('invisible')">
                         </div>
                         <div class="absolute right-0">
                                
@@ -147,12 +144,8 @@ function setInitialSlide() {
 }
 
 function fadeOutSlide(index) {
-  //first fade out the first slide to black.
   slides[index].classList.remove("animate-fadeIn");
-
   slides[index].classList.add("animate-fadeOut");
-
-  //Update the current Index of the slides.
   currentIndex = (currentIndex + 1) % totalSlides;
 
   clearTimeout(fadeTimeout);
@@ -164,9 +157,7 @@ function fadeOutSlide(index) {
 
 function fadeInSlide(index) {
   slides[index].classList.remove('hidden');
-
   slides[index].classList.remove("animate-fadeOut");
-
   slides[index].classList.add("animate-fadeIn");
 }
 
@@ -176,28 +167,6 @@ function toggleLoader(action){
         allLoaders.forEach((loader)=>{
             loader.classList.remove('invisible');
         });
-    }
-}
-
-function trapFocus(event, firstFocusableElement, lastFocusableElement){
-    
-    if(event.key === 'Tab' &&  !event.shiftKey){
-        //if the user presses the tab key without the shift key and the last focusable element is focused focus the first element.
-
-        if(document.activeElement === lastFocusableElement) {
-            event.preventDefault();
-
-            firstFocusableElement.focus();
-        }
-    } else if(event.key === 'Tab' && event.shiftKey){
-        //if the user presses the tab key with the shift key and the first focusable element is focused focus the last focusable element.
-        if(document.activeElement === firstFocusableElement) {
-            event.preventDefault();
-
-            lastFocusableElement.focus();
-        }
-    }else {
-        return;
     }
 }
 
@@ -240,8 +209,6 @@ function tabbingFunctionality(){
 
 function addDefaults(){
     if(!(localStorage.getItem('activeTab') && localStorage.getItem('activePage'))){
-       
-        
         localStorage.setItem('activeTab', 'movies');
         localStorage.setItem('activePage', 'home');
     }else {
@@ -260,4 +227,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
     tabbingFunctionality();
 });
 
-export { renderPage, renderAllMovies, toggleLoader, setInitialSlide, startSlideShow, fadeInSlide, fadeOutSlide, addButtonListeners, trapFocus };
+export { renderPage, renderAllMovies, toggleLoader, setInitialSlide, startSlideShow, fadeInSlide, fadeOutSlide, addButtonListeners };

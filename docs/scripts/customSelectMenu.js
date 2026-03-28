@@ -1,4 +1,4 @@
-import { fetchAndExecute, apiKey } from "../pageScripts/api.js";
+import { fetchAndExecute, apiKey, trapFocus } from "../pageScripts/api.js";
 import { renderPage } from "../pageScripts/index.js";
 
 export function initializeSelectMenu(){
@@ -50,26 +50,7 @@ export function initializeSelectMenu(){
         const firstFocusableElement = menuItems[0];
         const lastFocusableElement = menuItems[menuItems.length - 1];
 
-        function trapFocus(event){
-            if(event.key === 'Tab' &&  !event.shiftKey){
-                //if the user presses the tab key without the shift key and the last focusable element is focused focus the first element.
-
-                if(document.activeElement === lastFocusableElement) {
-                    event.preventDefault();
-
-                    firstFocusableElement.focus();
-                }
-            } else if(event.key === 'Tab' && event.shiftKey){
-                //if the user presses the tab key with the shift key and the first focusable element is focused focus the last focusable element.
-                if(document.activeElement === firstFocusableElement) {
-                    event.preventDefault();
-
-                    lastFocusableElement.focus();
-                }
-            }
-        }
-
-        customMenu.addEventListener('keydown', trapFocus);
+        customMenu.addEventListener('keydown', (e) => trapFocus(e, firstFocusableElement, lastFocusableElement));
         }
     });
 
